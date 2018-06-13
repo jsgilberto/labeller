@@ -9,10 +9,19 @@
   
 </head>
 <body>
-  <h1>Select one or more files</h1>
-  <input type="file" id="file" multiple size="50" id="">
-  <canvas id="canvas" style="display: block;"></canvas>
-  <button id="btn">Download to canvas</button>
+  <div class="left">
+    <h1>Select one or more files</h1>
+    <input type="file" id="file" multiple size="50" id="">
+    <canvas id="canvas" style="display: block;"></canvas>
+    <a href="#" class="button" id="btn-download" download="my-file-name.png">Download</a>
+  </div>
+  <div class="right">
+    <h1>List of uploaded files</h1>
+    <select size="15" id="file-list"></select>
+    <button id="btn-view">View Selected Image</button>
+  </div>
+
+  <script src="helpers.js"></script>
   <script src="index.js"></script>
 </body>
 </html>

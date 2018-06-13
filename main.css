@@ -1,0 +1,23 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+}
+
+#file-list {
+  list-style: none;
+}
+
+.right {
+  margin-left: 100px;
+}
+
+select {
+  width: 100%;
+  height: 50%;
+}
