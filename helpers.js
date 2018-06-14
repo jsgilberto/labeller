@@ -2,11 +2,33 @@
 function removeOptions(){
   //var options = document.getElementsByTagName("option");
 	var options = document.getElementsByTagName("li");
+	var options = document.getElementById("file-list").children;
 	
 	for(var i = options.length - 1; i >= 0; i--){
 		options[i].parentNode.removeChild(options[i]);
 	}
 }
+
+
+function removeOperations(){
+	var options = document.getElementById("op-list").children;
+	
+	for(var i = options.length - 1; i >= 0; i--){
+		options[i].parentNode.removeChild(options[i]);
+	}
+}
+
+function showOperations(fileName){
+	removeOperations();
+	if(fileOperations[fileName]){
+		var operations = fileOperations[fileName].length;
+		for (var i = 0; i < operations; i++){
+			var key = Object.keys(fileOperations[fileName][i]);
+			createElement("op-list", "LI", "", key[0]);
+		}
+	}
+}
+
 
 // Shows images stored in local database
 function showOptions(){
@@ -14,6 +36,7 @@ function showOptions(){
 	for ( var i = 0, len = keys.length; i < len; ++i ) {
 		console.log( keys[i] );
 		createElement("file-list", "LI", "", keys[i]);
+		
 	}
 
 	//var options = document.getElementsByTagName("option");
@@ -32,7 +55,7 @@ function showOptions(){
 			}
 
 			this.classList.add("li-clicked");
-			img_target = localStorage.getItem(this.innerHTML);
+			//img_target = localStorage.getItem(this.innerHTML);
 			img_target = fileObjects[this.innerHTML];
 			txt_target = this.innerHTML;
 		}
@@ -40,8 +63,8 @@ function showOptions(){
 		options[i].ondblclick = function(){
 			img = new Image();
 			trueTextTarget = this.innerHTML;
-			
-			img.src = localStorage.getItem( this.innerHTML );
+			showOperations(trueTextTarget);
+			//img.src = localStorage.getItem( this.innerHTML );
 			img.src = fileObjects[this.innerHTML];
 
 			img.onload = function() {
@@ -76,7 +99,7 @@ function storeFiles(){
 		
 		//arrayOfFiles.push(fileObj);
 		fileObjects[fileObj.name] = fileObj.file;
-		localStorage.setItem(fileObj.name, fileObj.file);
+		//localStorage.setItem(fileObj.name, fileObj.file);
 	}
 }
 

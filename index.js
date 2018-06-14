@@ -13,13 +13,16 @@ var ul_files = document.getElementById("file-list");
 var btnView = document.getElementById("btn-view");
 var btnGet = document.getElementById("btn-get");
 var img_target;
+var txt_target;
+var trueTextTarget;
+var rectObj;
+var fileOperations = {};
 
-var fileOps = {};
 var fileObjects = {};
 
 var img = new Image();
 
-localStorage.clear();
+//localStorage.clear();
 
 window.onload = function(){
 	removeOptions();
@@ -49,6 +52,8 @@ btnView.onclick = function(){
 		trueTextTarget = txt_target;
 	}
 
+	showOperations(trueTextTarget);
+
 	loadImage(ctx, canvas, img_target);
 };
 
@@ -60,9 +65,7 @@ btnDownload.addEventListener('click', function (e) {
 });
 
 
-var txt_target;
-var trueTextTarget;
-var rectObj;
+
 
 btnGet.onclick = function(){
 	if (pos1 && pos2){
@@ -72,6 +75,8 @@ btnGet.onclick = function(){
 			width: pos2.x - pos1.x,
 			height: pos2.y - pos1.y
 		};
+		pos1 = null;
+		pos2 = null;
 		document.getElementById('popup').style.display = "block";
 		document.getElementById('bg-popup').style.display = "block";
 	}
@@ -88,15 +93,50 @@ btnClose.onclick = function(){
 	document.getElementById('bg-popup').style.display = "none";
 }
 
+tag.onkeyup = function(e){
+	if (e.key === "Enter") {
+		btnSet.click();
+	}
+};
+
 btnSet.onclick = function(){
 	var tag = document.getElementById('tag');
+	// Algorithm to store data in object if it doesn't exist
+	if (!tag.value){
+		alert("Must set tag name");
+		btnClose.click();
+		return;
+	}
 
 	if (trueTextTarget) {
-		rectObj = Object.assign(rectObj, {tagName: tag.value});
-		fileOps[trueTextTarget] = rectObj;
-		console.log(fileOps);
+		
+		if(rectObj){
+			console.log("rectObj exists")
+			var newOpObj = {};
+			newOpObj[tag.value] = {rectObj};
+			rectObj = null;
+			console.log(rectObj);
+		}
+		else {
+			alert("Box not selected");
+			rectObj = null;
+			tag.value = "";
+			btnClose.click();
+			return;
+		}
+
+		if (fileOperations[trueTextTarget]){
+			fileOperations[trueTextTarget].push(newOpObj);
+		}
+		else {
+			var fileOps = [];
+			fileOps.push(newOpObj);
+			fileOperations[trueTextTarget] = fileOps;
+		}
+		
+		console.log(fileOperations);
 	}
-	
+	showOperations(trueTextTarget);
 	tag.value = "";
 	btnClose.click();
 }

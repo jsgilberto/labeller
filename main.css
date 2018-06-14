@@ -6,20 +6,23 @@
   box-sizing: border-box;
 }
 body {
-  padding-top: 30px;
+
   
   background: linear-gradient(to right, rgb(0, 159, 255), rgb(236, 47, 75));
   background: linear-gradient(to right, rgb(173, 83, 137), rgb(60, 16, 83));
-  background: linear-gradient(to right, rgb(0, 0, 70), rgb(28, 181, 224));
-
+  background: linear-gradient( rgb(0, 0, 70),
+    rgb(28, 181, 224));
+    background: linear-gradient( rgb(173, 169, 150), rgb(242, 242, 242), rgb(219, 219, 219), rgb(234, 234, 234), rgb(173, 169, 150));
+  
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
-  color: white;
+  color: #222;
 }
 
 .flex {
   display: flex;
   justify-content: space-around;
+  height: 150vh;
 }
 
 #title {
@@ -29,33 +32,63 @@ body {
 
 p {
   text-align: center;
-  margin-bottom: 100px;
+  font-weight: 500;
+}
+
+header {
+  padding-top: 35px;
+  padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  color: #222;
+  background: white;
+  margin-bottom: 50px;
+}
+
+header h1 {
+  height: auto;
+  font-weight: 500;
 }
 
 h1, h2 {
   height: 50px;
   text-transform: uppercase;
   font-weight: 300;
+  
+}
+
+.left h2 {
+  text-align: center;
+}
+
+.mid h2 {
+  text-align: center;
+}
+
+.right h2 {
+  text-align: center;
 }
 
 button {
   display: block;
   text-transform: uppercase;
   padding: 0.5rem 1.2rem;
-  border: 0.1rem solid white;
+  border: 0.1rem solid #222;;
   margin: 1rem 0;
   border-radius:0.12rem;
   font-family:'Roboto',sans-serif;
   font-weight:300;
-  color:white;
+  color:#222;
   text-align: center;
   transition: all 0.2s;
   background: transparent;
 }
 
 button:hover {
-  color: #444;
-  background: white
+  color: white;
+  background: #222;
 }
 
 #file-list {
@@ -78,38 +111,37 @@ canvas {
 
 li {
   padding: 0.7rem;
-  font-size: 1.6rem;
-  color: white;
+  font-size: 0.95rem;
+  color: #222;
   transition: all 0.4s;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
 .li-clicked {
-  background: white;
-  color: #444;
+  background: #222;
+  color: white;
 }
 
 ul li:hover, 
 ul li:focus, 
 ul li:active
 {
-    background: linear-gradient(#fff,#fff);
-    background-color: #fff !important; /* for IE */
-    color: #444;
+    
+    background-color: rgba(34, 34, 34, 0.5);
+    color: white;
 }
 
 ul {
+  
   width: 100%;
   height: 500px;
-  background: transparent;
-  box-sizing: content-box;
+  list-style: none;
   border: 1px solid white;
-  overflow: scroll;
+  overflow: scroll; 
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0px 6px 22px 0px rgba(3,6,41,0.3);
+  border: none;
+  padding: 20px;
 }
 
 ul::-webkit-scrollbar { 
@@ -125,17 +157,34 @@ ul::-webkit-scrollbar {
   height: 100%;
   background: rgba(0,0,0, 0.5);
   display: none;
-  
+  text-align: right;
 }
 
 .popup h1 {
   height: auto;
   font-size: 1rem;
   margin-bottom: 1rem;
+  color: #222;
+  font-weight: 400;
+  text-align: left;
+}
+
+.popup input {
+  color: #222;
+  outline: none;
+}
+
+.popup p {
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.popup button {
+  margin-right: 1rem;
 }
 
 .bg-popup {
-  padding: 20px;
+  padding: 30px;
   position: fixed;
   top: calc(50% - 150px);
   left: calc(50% - 150px);
@@ -145,17 +194,34 @@ ul::-webkit-scrollbar {
   background: white;
   border-radius: 5px;
   display: none;
-  
 }
 
 #set, #close-popup {
-  color: #444;
-  border-color: #444;
+  display: inline-block;
+  color: #222;
+  border-color: #222;
 }
 
+#set:hover, #close-popup:hover {
+  color: white;
+  background: #222;
+}
 
 #tag {
   width: 100%;
   font-size: 1rem;
   padding: 0.4rem 1rem; 
+}
+
+footer {
+  height: 130px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer p {
+  font-weight: 300;
+  font-size: 0.9rem;
 }
