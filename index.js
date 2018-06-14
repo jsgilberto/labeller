@@ -142,3 +142,5 @@ btnSet.onclick = function(){
 	tag.value = "";
 	btnClose.click();
 }
+
+

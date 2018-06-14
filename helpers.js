@@ -82,14 +82,15 @@ function drawOpsInCanvas(fileName){
 			// Get name of operation
 			var opName = Object.keys(operations[i]);
 			var opValues = operations[i][opName].rectObj;
-			console.log(opValues);
+			//console.log(opValues);
 			x = opValues.x;
 			y = opValues.y;
 			width = opValues.width;
 			height = opValues.height;
-			console.log(x,y,width,height);
+			//console.log(x,y,width,height);
 			ctx.fillStyle = "rgba(255,255,255, 0.3)";
 			ctx.fillRect(x, y, width, height);
+			
 		}		
 	}
 }
