@@ -10,12 +10,15 @@ body {
   display: flex;
   background: linear-gradient(to right, rgb(0, 159, 255), rgb(236, 47, 75));
   background: linear-gradient(to right, rgb(173, 83, 137), rgb(60, 16, 83));
+  background: linear-gradient(to right, rgb(0, 0, 70), rgb(28, 181, 224));
+
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: white;
 }
 
 h1, h2 {
+  height: 50px;
   text-transform: uppercase;
   margin-bottom: 50px;
 }
@@ -59,23 +62,34 @@ canvas {
   border: 3px solid white;
 }
 
-option {
+li {
   padding: 0.7rem;
   font-size: 1.6rem;
   color: white;
+  transition: all 1s;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-select option:hover, 
-select option:focus, 
-select option:active, 
-select option:checked
+.li-clicked {
+  background: white;
+  color: #444;
+}
+
+ul li:hover, 
+ul li:focus, 
+ul li:active
 {
     background: linear-gradient(#fff,#fff);
     background-color: #fff !important; /* for IE */
     color: #444;
 }
 
-select {
+ul {
   width: 100%;
   max-height: 500px;
   min-height: 500px;
@@ -84,10 +98,11 @@ select {
   
 }
 
-select:focus {
+ul:focus {
   outline: none;
 }
 
-select::-webkit-scrollbar { 
+ul::-webkit-scrollbar { 
   display: none; 
 }
+

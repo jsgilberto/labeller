@@ -1,7 +1,8 @@
 // Removes the options from the html document (not from local database)
 function removeOptions(){
-  var options = document.getElementsByTagName("option");
-  
+  //var options = document.getElementsByTagName("option");
+	var options = document.getElementsByTagName("li");
+	
 	for(var i = options.length - 1; i >= 0; i--){
 		options[i].parentNode.removeChild(options[i]);
 	}
@@ -11,13 +12,25 @@ function removeOptions(){
 function showOptions(){
 	for ( var i = 0, len = localStorage.length; i < len; ++i ) {
 		console.log( localStorage.getItem( localStorage.key( i ) ) );
-		createElement("file-list", "OPTION", localStorage.getItem(localStorage.key(i)), localStorage.key(i));
+		createElement("file-list", "LI", "", localStorage.key(i));
 	}
 
-	var options = document.getElementsByTagName("option");
-	
+	//var options = document.getElementsByTagName("option");
+	var options = document.getElementsByTagName("li");
+
 	for (var i = 0; i < options.length; i++){
+
 		options[i].onclick = function(){
+			//this.classList.remove("li-clicked");
+			console.log(this.parentElement.children);
+			// remove selected style from li elements
+			var opts = this.parentElement.children;
+			
+			for(var j = 0; j < opts.length; j++){
+				opts[j].classList.remove("li-clicked");
+			}
+
+			this.classList.add("li-clicked");
 			img_target = localStorage.getItem(this.innerHTML);
 		}
 
@@ -57,6 +70,19 @@ function storeFiles(){
 		
 		arrayOfFiles.push(fileObj);
 		localStorage.setItem(fileObj.name, fileObj.file);
+	}
+}
+
+// Load image on canvas
+function loadImage(ctx, canvas, target){
+	var img = new Image();
+	img.src = target;
+
+	img.onload = function() {
+		flag = true;
+		ctx.canvas.width = ctx.canvas.width;
+		fitImageOn(canvas, img);
+		console.log("done loading");
 	}
 }
 
