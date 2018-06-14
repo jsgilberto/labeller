@@ -5,20 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700|Roboto:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   
 </head>
 <body>
   <div class="left">
-    <h1>Select one or more files</h1>
+    <h1>Label your images for ML</h1>
     <input type="file" id="file" multiple size="50" id="">
     <canvas id="canvas" style="display: block;"></canvas>
-    <a href="#" class="button" id="btn-download" download="my-file-name.png">Download</a>
+    <a style="display: none;" href="#" class="button" id="btn-download" download="my-file-name.png">Download</a>
   </div>
   <div class="right">
-    <h1>List of uploaded files</h1>
+    <h2>List of images to label</h2>
     <select size="15" id="file-list"></select>
     <button id="btn-view">View Selected Image</button>
+    <button id="btn-draw">Draw Rectangle</button>
   </div>
 
   <script src="helpers.js"></script>

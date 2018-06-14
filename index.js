@@ -8,6 +8,7 @@ canvas.height = 500;
 var btnDownload = document.getElementById('btn-download');
 var ul_files = document.getElementById("file-list");
 var btnView = document.getElementById("btn-view");
+var btnDraw = document.getElementById("btn-draw");
 var arrayOfFiles = [];
 var img_target;
 var img = new Image();
@@ -59,3 +60,53 @@ btnDownload.addEventListener('click', function (e) {
 	console.log(dataURL);
   btnDownload.href = dataURL;
 });
+
+/**
+ * Drawing on canvas section
+**/
+
+var draw = false;
+var pos1, pos2;
+
+
+canvas.onmousedown = function(e){
+	draw = true;
+	pos1 = getMousePos(canvas, e);
+}
+
+canvas.onmouseup = function(e){
+	pos2 = getMousePos(canvas, e);
+	draw = false;
+}
+
+canvas.onmousemove = function(e){
+	if (draw){
+		ctx.canvas.width = ctx.canvas.width;
+		pos2 = getMousePos(canvas, e);
+		fitImageOn(canvas, img);
+		ctx.rect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
+		ctx.strokeStyle = "white";
+		ctx.stroke();
+	}
+}
+/* canvas.onclick = function(e){
+	console.log(getMousePos(canvas,e));
+
+	if (first){
+		pos2 = getMousePos(canvas,e);
+		ctx.rect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
+		ctx.stroke();
+		first = false;
+		draw = false;
+	}
+
+	if (draw){
+		pos1 = getMousePos(canvas, e);
+		first = true;
+	}
+	
+} */
+
+btnDraw.onclick = function(){
+	draw = true;
+}

@@ -82,3 +82,16 @@ var fitImageOn = function(canvas, imageObj) {
 	}
 	ctx.drawImage(imageObj, xStart, yStart, renderableWidth, renderableHeight);
 };
+
+/**
+ * All drawing helper functions
+ **/
+
+ // gets mouse position of canvas
+function getMousePos(canvas, evt) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+		x: evt.clientX - rect.left,
+		y: evt.clientY - rect.top
+	};
+}
