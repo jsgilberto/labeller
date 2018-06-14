@@ -114,6 +114,7 @@ function showOptions(){
 			console.log(this.parentElement.children);
 			// remove selected style from li elements
 			var opts = this.parentElement.children;
+			opInfo.innerHTML = "";
 			
 			for(var j = 0; j < opts.length; j++){
 				opts[j].classList.remove("li-clicked");

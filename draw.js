@@ -62,8 +62,8 @@ canvas.onmouseover = function(){
 					ctx.canvas.width = ctx.canvas.width;
 					fitImageOn(canvas, img);
 					drawOpsInCanvas(trueTextTarget);
-					ctx.fillStyle = "white";
-					ctx.font = "14px Arial";
+					ctx.fillStyle = "red";
+					ctx.font = "20px Arial";
 					ctx.fillText(opName, x, y);
 					return;
 				}
