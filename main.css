@@ -7,7 +7,7 @@
 }
 body {
   padding-top: 30px;
-  display: flex;
+  
   background: linear-gradient(to right, rgb(0, 159, 255), rgb(236, 47, 75));
   background: linear-gradient(to right, rgb(173, 83, 137), rgb(60, 16, 83));
   background: linear-gradient(to right, rgb(0, 0, 70), rgb(28, 181, 224));
@@ -17,10 +17,25 @@ body {
   color: white;
 }
 
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+#title {
+  text-align: center;
+  margin: 0;
+}
+
+p {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
 h1, h2 {
   height: 50px;
   text-transform: uppercase;
-  margin-bottom: 50px;
+  font-weight: 300;
 }
 
 button {
@@ -47,26 +62,25 @@ button:hover {
   list-style: none;
 }
 
-.right {
-  margin-left: 100px;
+.mid {
+  width: 20%;
+ 
 }
 
-
-
-.left {
-  margin-left: 100px;
+.right {
+  width: 20%;
 }
 
 canvas {
   transition: all 1s;
-  border: 3px solid white;
+  /*border: 1px solid white;*/
 }
 
 li {
   padding: 0.7rem;
   font-size: 1.6rem;
   color: white;
-  transition: all 1s;
+  transition: all 0.4s;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -91,18 +105,57 @@ ul li:active
 
 ul {
   width: 100%;
-  max-height: 500px;
-  min-height: 500px;
+  height: 500px;
   background: transparent;
-  border: 3px solid white;
-  
-}
-
-ul:focus {
-  outline: none;
+  box-sizing: content-box;
+  border: 1px solid white;
+  overflow: scroll;
 }
 
 ul::-webkit-scrollbar { 
   display: none; 
 }
 
+.popup {
+  
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0, 0.5);
+  display: none;
+  
+}
+
+.popup h1 {
+  height: auto;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.bg-popup {
+  padding: 20px;
+  position: fixed;
+  top: calc(50% - 150px);
+  left: calc(50% - 150px);
+  width: 300px;
+  height: 300px;
+  color: #444;
+  background: white;
+  border-radius: 5px;
+  display: none;
+  
+}
+
+#set, #close-popup {
+  color: #444;
+  border-color: #444;
+}
+
+
+#tag {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.4rem 1rem; 
+}

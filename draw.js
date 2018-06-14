@@ -13,7 +13,8 @@ canvas.onmousedown = function(e){
 
 canvas.onmouseup = function(e){
 	pos2 = getMousePos(canvas, e);
-	draw = false;
+  draw = false;
+  btnGet.click();
 }
 
 canvas.onmousemove = function(e){

@@ -32,10 +32,12 @@ function showOptions(){
 
 			this.classList.add("li-clicked");
 			img_target = localStorage.getItem(this.innerHTML);
+			txt_target = this.innerHTML;
 		}
 
 		options[i].ondblclick = function(){
 			img = new Image();
+			trueTextTarget = this.innerHTML;
 			img.src = localStorage.getItem( this.innerHTML );
 			
 			img.onload = function() {
@@ -68,7 +70,7 @@ function storeFiles(){
       file: URL.createObjectURL(file.files[i])
 		};
 		
-		arrayOfFiles.push(fileObj);
+		//arrayOfFiles.push(fileObj);
 		localStorage.setItem(fileObj.name, fileObj.file);
 	}
 }

@@ -12,8 +12,10 @@ var btnDownload = document.getElementById('btn-download');
 var ul_files = document.getElementById("file-list");
 var btnView = document.getElementById("btn-view");
 var btnGet = document.getElementById("btn-get");
-var arrayOfFiles = [];
 var img_target;
+
+var fileObjects = {};
+
 var img = new Image();
 
 localStorage.clear();
@@ -32,14 +34,18 @@ file.onchange = function(e) {
 	removeOptions();
 	showOptions();
 
-	//img_target = localStorage.getItem(localStorage.key(0));
-	//loadImage(ctx, canvas, img_target);
-
 };
+
+var imgIsSet = false;
 
 btnView.onclick = function(){
 	if (img_target){
 		img.src = img_target;
+	}
+
+	imgIsSet = true;
+	if (imgIsSet){
+		trueTextTarget = txt_target;
 	}
 
 	loadImage(ctx, canvas, img_target);
@@ -53,14 +59,44 @@ btnDownload.addEventListener('click', function (e) {
 });
 
 
-
+var txt_target;
+var trueTextTarget;
 var rectObj;
 
 btnGet.onclick = function(){
-	rectObj = {
-		x: pos1.x,
-		y: pos1.y,
-		width: pos2.x - pos1.x,
-		height: pos2.y - pos1.y
-	};
+	if (pos1 && pos2){
+		rectObj = {
+			x: pos1.x,
+			y: pos1.y,
+			width: pos2.x - pos1.x,
+			height: pos2.y - pos1.y
+		};
+		document.getElementById('popup').style.display = "block";
+		document.getElementById('bg-popup').style.display = "block";
+	}
+	else {
+		alert(" Please, Draw a Box on the Image");
+	}
+}
+
+var btnClose = document.getElementById('close-popup');
+var btnSet = document.getElementById('set');
+
+btnClose.onclick = function(){
+	document.getElementById('popup').style.display = "none";
+	document.getElementById('bg-popup').style.display = "none";
+}
+
+btnSet.onclick = function(){
+	var tag = document.getElementById('tag');
+
+	
+	if (trueTextTarget) {
+		console.log(trueTextTarget);
+		rectObj = Object.assign(rectObj, {tagName: tag.value});
+		fileObjects[trueTextTarget] = rectObj;
+	}
+	
+	tag.value = "";
+	btnClose.click();
 }

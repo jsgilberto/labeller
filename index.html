@@ -10,21 +10,38 @@
   
 </head>
 <body>
-  <div class="left">
-    <h1>Label your images for ML</h1>
-    <!-- <input type="file" id="file" multiple size="50" id=""> -->
-    
-    <canvas id="canvas" style="display: block;"></canvas>
-    <button id="file">Upload Files</button>
-    <a style="display: none;" href="#" class="button" id="btn-download" download="my-file-name.png">Download</a>
-  </div>
-  <div class="right">
-    <h2>List of images to label</h2>
-    <ul id="file-list"></ul>
-    <div class="buttons">
-      <button id="btn-view">View Selected Image</button>
-      <button id="btn-get">Get Rectangle</button>
+  <div id="popup" class="popup">
+    <div id="bg-popup" class="bg-popup">
+      <h1>Tag name:</h1>
+      <input id="tag" type="text">
+      <button id="set">Set</button>
+      <button id="close-popup">Close</button>
     </div>
+  </div>
+
+  <h1 id="title">Labeller</h1>
+  <p>Label your images for Machine Learning</p>
+  <div class="flex">
+      <div class="left">
+        <h2>Image viewer</h2>
+        <!-- <input type="file" id="file" multiple size="50" id=""> -->
+        
+        <canvas id="canvas" style="display: block;"></canvas>
+        <button id="file">Upload Files</button>
+        <a style="display: none;" href="#" class="button" id="btn-download" download="my-file-name.png">Download</a>
+      </div>
+      <div class="mid">
+        <h2>Uploaded images</h2>
+        <ul id="file-list"></ul>
+        <div class="buttons">
+          <button id="btn-view">View Selected Image</button>
+          <button id="btn-get">Get Rectangle</button>
+        </div>
+      </div>
+      <div class="right">
+        <h2>Operations</h2>
+        <ul id="op-list"></ul>
+      </div>
   </div>
 
   <script src="helpers.js"></script>
