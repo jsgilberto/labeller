@@ -20,6 +20,18 @@ function showOptions(){
 		options[i].onclick = function(){
 			img_target = localStorage.getItem(this.innerHTML);
 		}
+
+		options[i].ondblclick = function(){
+			img = new Image();
+			img.src = localStorage.getItem( this.innerHTML );
+			
+			img.onload = function() {
+				flag = true;
+				ctx.canvas.width = ctx.canvas.width;
+				fitImageOn(canvas, img);
+				console.log("done loading");
+			};
+		}
 	}
 }
 

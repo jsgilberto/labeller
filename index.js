@@ -1,4 +1,7 @@
-var file = document.getElementById("file");
+var file = document.createElement("INPUT");
+file.setAttribute("type", "file");
+file.multiple = true;
+var btnFile = document.getElementById("file");
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var fr = new FileReader();
@@ -8,7 +11,7 @@ canvas.height = 500;
 var btnDownload = document.getElementById('btn-download');
 var ul_files = document.getElementById("file-list");
 var btnView = document.getElementById("btn-view");
-var btnDraw = document.getElementById("btn-draw");
+var btnGet = document.getElementById("btn-get");
 var arrayOfFiles = [];
 var img_target;
 var img = new Image();
@@ -19,6 +22,10 @@ window.onload = function(){
 	removeOptions();
 	showOptions();
 };
+
+btnFile.onclick = function(){
+	file.click();
+}
 
 file.onchange = function(e) {
 	storeFiles();
@@ -85,28 +92,17 @@ canvas.onmousemove = function(e){
 		pos2 = getMousePos(canvas, e);
 		fitImageOn(canvas, img);
 		ctx.rect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
-		ctx.strokeStyle = "white";
+		ctx.strokeStyle = "red";
 		ctx.stroke();
 	}
 }
-/* canvas.onclick = function(e){
-	console.log(getMousePos(canvas,e));
 
-	if (first){
-		pos2 = getMousePos(canvas,e);
-		ctx.rect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
-		ctx.stroke();
-		first = false;
-		draw = false;
-	}
-
-	if (draw){
-		pos1 = getMousePos(canvas, e);
-		first = true;
-	}
-	
-} */
-
-btnDraw.onclick = function(){
-	draw = true;
+var rectObj;
+btnGet.onclick = function(){
+	rectObj = {
+		x: pos1.x,
+		y: pos1.y,
+		width: pos2.x - pos1.x,
+		height: pos2.y - pos1.y
+	};
 }
