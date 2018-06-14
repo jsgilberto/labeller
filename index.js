@@ -14,6 +14,7 @@ var btnView = document.getElementById("btn-view");
 var btnGet = document.getElementById("btn-get");
 var img_target;
 
+var fileOps = {};
 var fileObjects = {};
 
 var img = new Image();
@@ -90,11 +91,10 @@ btnClose.onclick = function(){
 btnSet.onclick = function(){
 	var tag = document.getElementById('tag');
 
-	
 	if (trueTextTarget) {
-		console.log(trueTextTarget);
 		rectObj = Object.assign(rectObj, {tagName: tag.value});
-		fileObjects[trueTextTarget] = rectObj;
+		fileOps[trueTextTarget] = rectObj;
+		console.log(fileOps);
 	}
 	
 	tag.value = "";

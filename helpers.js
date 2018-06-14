@@ -10,9 +10,10 @@ function removeOptions(){
 
 // Shows images stored in local database
 function showOptions(){
-	for ( var i = 0, len = localStorage.length; i < len; ++i ) {
-		console.log( localStorage.getItem( localStorage.key( i ) ) );
-		createElement("file-list", "LI", "", localStorage.key(i));
+	var keys = Object.keys(fileObjects);
+	for ( var i = 0, len = keys.length; i < len; ++i ) {
+		console.log( keys[i] );
+		createElement("file-list", "LI", "", keys[i]);
 	}
 
 	//var options = document.getElementsByTagName("option");
@@ -32,14 +33,17 @@ function showOptions(){
 
 			this.classList.add("li-clicked");
 			img_target = localStorage.getItem(this.innerHTML);
+			img_target = fileObjects[this.innerHTML];
 			txt_target = this.innerHTML;
 		}
 
 		options[i].ondblclick = function(){
 			img = new Image();
 			trueTextTarget = this.innerHTML;
-			img.src = localStorage.getItem( this.innerHTML );
 			
+			img.src = localStorage.getItem( this.innerHTML );
+			img.src = fileObjects[this.innerHTML];
+
 			img.onload = function() {
 				flag = true;
 				ctx.canvas.width = ctx.canvas.width;
@@ -71,6 +75,7 @@ function storeFiles(){
 		};
 		
 		//arrayOfFiles.push(fileObj);
+		fileObjects[fileObj.name] = fileObj.file;
 		localStorage.setItem(fileObj.name, fileObj.file);
 	}
 }
