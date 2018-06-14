@@ -12,6 +12,7 @@ var btnDownload = document.getElementById('btn-download');
 var ul_files = document.getElementById("file-list");
 var btnView = document.getElementById("btn-view");
 var btnGet = document.getElementById("btn-get");
+var opInfo = document.getElementById("op-info");
 var img_target;
 var txt_target;
 var trueTextTarget;
@@ -47,14 +48,10 @@ btnView.onclick = function(){
 		img.src = img_target;
 	}
 
-	imgIsSet = true;
-	if (imgIsSet){
-		trueTextTarget = txt_target;
-	}
-
 	showOperations(trueTextTarget);
 
 	loadImage(ctx, canvas, img_target);
+	drawOpsInCanvas(trueTextTarget);
 };
 
 // download image from canvas
@@ -68,6 +65,7 @@ btnDownload.addEventListener('click', function (e) {
 
 
 btnGet.onclick = function(){
+	console.log(pos1, pos2);
 	if (pos1 && pos2){
 		rectObj = {
 			x: pos1.x,
@@ -96,6 +94,9 @@ btnClose.onclick = function(){
 tag.onkeyup = function(e){
 	if (e.key === "Enter") {
 		btnSet.click();
+	}
+	if (e.key === "Escape") {
+		btnClose.click();
 	}
 };
 
@@ -137,6 +138,7 @@ btnSet.onclick = function(){
 		console.log(fileOperations);
 	}
 	showOperations(trueTextTarget);
+	drawOpsInCanvas(trueTextTarget);
 	tag.value = "";
 	btnClose.click();
 }

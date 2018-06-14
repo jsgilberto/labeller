@@ -22,13 +22,77 @@ function showOperations(fileName){
 	removeOperations();
 	if(fileOperations[fileName]){
 		var operations = fileOperations[fileName].length;
+
 		for (var i = 0; i < operations; i++){
 			var key = Object.keys(fileOperations[fileName][i]);
 			createElement("op-list", "LI", "", key[0]);
 		}
+
+		var ops = document.getElementById("op-list").children;
+
+		for(var i = 0; i < operations; i++){
+			ops[i].onclick = function(){
+				var opInfoText;
+				var x, y, width, height;
+				//opInfo.innerHTML = JSON.stringify(fileOperations[trueTextTarget]);
+				for(var j = 0; j < fileOperations[trueTextTarget].length; j++){
+					console.log(this.innerHTML);
+					console.log(fileOperations[trueTextTarget][j][this.innerHTML]);
+					if(fileOperations[trueTextTarget][j][this.innerHTML]){
+						opInfoText = fileOperations[trueTextTarget][j][this.innerHTML].rectObj;
+
+						x = opInfoText.x;
+						y = opInfoText.y;
+						width = opInfoText.width;
+						height = opInfoText.height;
+
+						opInfoText = "Coordinate X: " + opInfoText.x.toString() + "<br>" +
+												"Coordinate Y: " + opInfoText.y.toString() + "<br>" +
+												"Width: " + opInfoText.width.toString() + "<br>" +
+												"Height: " + opInfoText.height.toString();
+						
+						opInfo.innerHTML = opInfoText;
+					}
+				}
+
+				var opts = this.parentElement.children;
+			
+				for(var j = 0; j < opts.length; j++){
+					opts[j].classList.remove("li-clicked");
+				}
+
+				this.classList.add("li-clicked");
+
+			};
+		}
 	}
+
 }
 
+
+// show operations in canvas
+function drawOpsInCanvas(fileName){
+	//var fileNames = Object.keys(fileObjects);
+	if (fileOperations[fileName]){
+		// Get array of operations per file name
+		var operations = fileOperations[fileName];
+		var x, y, width, height;
+		// Iterate over every operation
+		for (var i = 0; i < operations.length; i++){
+			// Get name of operation
+			var opName = Object.keys(operations[i]);
+			var opValues = operations[i][opName].rectObj;
+			console.log(opValues);
+			x = opValues.x;
+			y = opValues.y;
+			width = opValues.width;
+			height = opValues.height;
+			console.log(x,y,width,height);
+			ctx.fillStyle = "rgba(255,255,255, 0.3)";
+			ctx.fillRect(x, y, width, height);
+		}		
+	}
+}
 
 // Shows images stored in local database
 function showOptions(){
@@ -55,15 +119,28 @@ function showOptions(){
 			}
 
 			this.classList.add("li-clicked");
-			//img_target = localStorage.getItem(this.innerHTML);
+			
 			img_target = fileObjects[this.innerHTML];
-			txt_target = this.innerHTML;
+			trueTextTarget = this.innerHTML;
+			img.src = img_target;
+
+			showOperations(trueTextTarget);
+
+			img.onload = function() {
+				flag = true;
+				ctx.canvas.width = ctx.canvas.width;
+				fitImageOn(canvas, img);
+				drawOpsInCanvas(trueTextTarget);
+				console.log("done loading!");
+			};
+
 		}
 
 		options[i].ondblclick = function(){
 			img = new Image();
 			trueTextTarget = this.innerHTML;
 			showOperations(trueTextTarget);
+			
 			//img.src = localStorage.getItem( this.innerHTML );
 			img.src = fileObjects[this.innerHTML];
 
@@ -71,6 +148,7 @@ function showOptions(){
 				flag = true;
 				ctx.canvas.width = ctx.canvas.width;
 				fitImageOn(canvas, img);
+				drawOpsInCanvas(trueTextTarget);
 				console.log("done loading");
 			};
 		}

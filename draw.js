@@ -22,9 +22,11 @@ canvas.onmousemove = function(e){
 		ctx.canvas.width = ctx.canvas.width;
 		pos2 = getMousePos(canvas, e);
 		fitImageOn(canvas, img);
-		ctx.rect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
-    ctx.strokeStyle = "red";
-    ctx.lineWidth=4;
-		ctx.stroke();
+		ctx.fillStyle = "rgba(255,255,255, 0.3)";
+		ctx.fillRect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
+		
+    //ctx.strokeStyle = "rgba(34,34,34,1)";
+    //ctx.lineWidth = 2;
+		//ctx.stroke();
 	}
 }

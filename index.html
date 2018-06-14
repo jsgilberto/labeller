@@ -3,8 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Page Title</title>
+  <title>Labeller</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700|Roboto:300,400,500,700" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
   
@@ -37,17 +39,18 @@
         <h2>Files</h2>
         <ul id="file-list"></ul>
         <div class="buttons">
-          <button id="btn-view">View Selected Image</button>
-          <button id="btn-get">Get Rectangle</button>
+          <button id="btn-view">View Image</button>
+          <button id="btn-get">Select</button>
         </div>
       </div>
       <div class="right">
         <h2>History</h2>
         <ul id="op-list"></ul>
+        <p id="op-info"></p>
       </div>
   </div>
   <footer>
-    <p>Made with love by Jesus Alvarez</p>
+    <p>Made with <i class="fas fa-heart"></i> by <a href="">Jesus Alvarez</a></p>
   </footer>
   <script src="helpers.js"></script>
   <script src="draw.js"></script>
