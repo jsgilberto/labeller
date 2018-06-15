@@ -19,6 +19,9 @@ canvas.onmouseup = function(e){
 		pos2 = getMousePos(canvas, e);
 		draw = false;
 		btnGet.click();
+		// Focus on the input text field
+		var tag = document.getElementById("tag");
+		tag.focus();
 	}
 }
 

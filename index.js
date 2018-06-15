@@ -70,6 +70,7 @@ btnDownload.addEventListener('click', function (e) {
 
 
 btnGet.onclick = function(){
+	
 	console.log(pos1, pos2);
 	if (pos1 && pos2){
 		rectObj = {

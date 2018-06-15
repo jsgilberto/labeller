@@ -26,8 +26,11 @@ a:hover {
 
 .flex {
   display: flex;
+  
+  width: 80vw;
+  
   justify-content: space-around;
-  height: 100vh;
+  height: 680px;
 }
 
 #title {
@@ -35,7 +38,7 @@ a:hover {
   margin: 0;
 }
 
-p {
+header p {
   text-align: center;
   font-weight: 500;
 }
@@ -119,18 +122,25 @@ button:hover {
   margin-bottom: 1rem;
 }
 
-.op-details {
+/*.op-details {
   width: 10%;
+}*/
+
+#op-details p {
+  font-size: 0.8rem;
+  background: white;
+  padding: 2rem;
+  text-align: left; 
+  overflow-wrap: break-word;
+  
+  transition: all 1s;
+  z-index: -1;
 }
 
-.op-details p {
-  position: fixed;
-  top: 48px;
-  left: 898px;
-  width: 100%;
-  text-align: left;
-  
-  overflow-wrap: break-word;
+#op-details p span {
+  text-transform: uppercase;
+  display: block;
+  font-weight: 600;
 }
 
 canvas {

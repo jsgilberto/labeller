@@ -51,7 +51,8 @@ function showOperations(fileName){
 						width = opInfoText.width;
 						height = opInfoText.height;
 
-						opInfoText = "Coordinate X: <strong>" + opInfoText.x.toString() + "</strong><br>" +
+						opInfoText = "<span>Box Details</span><br>"+
+												"Coordinate X: <strong>" + opInfoText.x.toString() + "</strong><br>" +
 												"Coordinate Y: <strong>" + opInfoText.y.toString() + "</strong><br>" +
 												"Width: <strong>" + opInfoText.width.toString() + "</strong><br>" +
 												"Height: <strong>" + opInfoText.height.toString() + "</strong>";
@@ -79,8 +80,31 @@ function showOperations(fileName){
 					details[i].parentNode.removeChild(details[i]);
 				}
 
+				// Create paragraph with details
 				createElement("op-details", "P", "", opInfoText);
+				// Create span (arrow for details)
+				createElementWithId("op-details", "span", "arrow", "");
 
+				// Select the element just created above and position it next to the element that created it
+				var body = document.body.getBoundingClientRect();
+				var li = this.getBoundingClientRect();
+				var p = details[0];
+				var pPos = p.getBoundingClientRect();
+				var arrow = document.getElementById("arrow");
+
+				arrow.style.display = "block";
+				arrow.style.width = "20px";
+				arrow.style.height = "20px";
+				arrow.style.background = "#222";
+				arrow.style.position = "absolute";
+				arrow.style.top = (li.y - body.y + 10).toString() + "px";
+				arrow.style.left = (li.x + li.width + 20).toString() + "px";
+				arrow.style.clipPath = "polygon(0 50%, 100% 100%, 100% 0)";
+				p.style.display = "block";
+				p.style.position = "absolute";
+				p.style.top = (li.y - body.y - pPos.height/2 + 17).toString() + "px";
+				p.style.left = (li.x + li.width + 40).toString() + "px";
+				p.innerHTML = opInfoText;
 			};
 
 			ops[i].onmouseover = function(){
@@ -190,6 +214,10 @@ function showOptions(){
 				console.log("done loading!");
 			};
 
+			var details = document.getElementById("op-details").children;
+			for(var i = details.length - 1; i >= 0; i--){
+				details[i].parentNode.removeChild(details[i]);
+			}
 		}
 	}
 }
@@ -200,6 +228,16 @@ function createElement(parentId, elementTag, elementValue, html) {
 	var newElement = document.createElement(elementTag);
 	if (elementValue){
 		newElement.setAttribute('value', elementValue);
+	}
+	newElement.innerHTML = html;
+	p.appendChild(newElement);
+}
+
+function createElementWithId(parentId, elementTag, elementValue, html){
+	var p = document.getElementById(parentId);
+	var newElement = document.createElement(elementTag);
+	if (elementValue){
+		newElement.setAttribute('id', elementValue);
 	}
 	newElement.innerHTML = html;
 	p.appendChild(newElement);
