@@ -60,11 +60,22 @@ btnView.onclick = function(){
 };
 
 // download image from canvas
-btnDownload.addEventListener('click', function (e) {
-	var dataURL = canvas.toDataURL('image/png');
-	console.log(dataURL);
-  btnDownload.href = dataURL;
-});
+btnDownload.onclick = function () {
+	if (trueTextTarget){
+		var file = operationsToXML(trueTextTarget);
+	}
+	else {
+		alert("Load an Image first!");
+		return;
+	}
+
+	// Trim the extension from the filename (image.jpg ---> image)
+	var filename = trueTextTarget.substring(0, trueTextTarget.indexOf('.'));
+	var link = document.createElement('a');
+	link.setAttribute('href', window.URL.createObjectURL(file));
+	link.setAttribute('download', filename + '.xml');
+	link.click();
+};
 
 
 
@@ -88,6 +99,36 @@ btnGet.onclick = function(){
 		alert(" Please, Draw a Box on the Image");
 	}
 }
+
+opRemove.onclick = function(){
+	// Remove operations from fileOperations object.
+	
+	// Find index of Operation
+	// Array of objects. Every element contains a single operation.
+	if(fileOperations[trueTextTarget]){
+		var operations = fileOperations[trueTextTarget];
+		var index = trueIdOp;
+	}
+	else{
+		return;
+	}
+
+	// Remove paragraph's (in this case there's going to be only one)
+	var details = document.getElementById("op-details").children;
+	for(var i = details.length - 1; i >= 0; i--){
+		details[i].parentNode.removeChild(details[i]);
+	}
+
+	console.log(fileOperations[trueTextTarget][index][trueTextOp]);
+	fileOperations[trueTextTarget].splice(index, 1);
+	showOperations(trueTextTarget);
+	ctx.canvas.width = ctx.canvas.width;
+	fitImageOn(canvas, img);
+	drawOpsInCanvas(trueTextTarget);
+}
+
+
+// Popup objects!
 
 var btnClose = document.getElementById('close-popup');
 var btnSet = document.getElementById('set');
@@ -149,23 +190,4 @@ btnSet.onclick = function(){
 	btnClose.click();
 }
 
-opRemove.onclick = function(){
-	// Remove operations from fileOperations object.
-	
-	// Find index of Operation
-	// Array of objects. Every element contains a single operation.
-	if(fileOperations[trueTextTarget]){
-		var operations = fileOperations[trueTextTarget];
-		var index = trueIdOp;
-	}
-	else{
-		return;
-	}
 
-	console.log(fileOperations[trueTextTarget][index][trueTextOp]);
-	fileOperations[trueTextTarget].splice(index, 1);
-	showOperations(trueTextTarget);
-	ctx.canvas.width = ctx.canvas.width;
-	fitImageOn(canvas, img);
-	drawOpsInCanvas(trueTextTarget);
-}

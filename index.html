@@ -33,7 +33,8 @@
         
         <canvas id="canvas" style="display: block;"></canvas>
         <button id="file">Upload Files</button>
-        <a style="display: none;" href="#" class="button" id="btn-download" download="my-file-name.png">Download</a>
+        
+        
       </div>
       <div class="mid">
         <h2>Files</h2>
@@ -46,7 +47,10 @@
       <div class="right">
         <h2>History</h2>
         <ul id="op-list"></ul>
-        <button id="remove">Remove</button>
+        <div class="buttons">
+          <button id="remove">Remove</button>
+          <button id="btn-download">Download</button>
+        </div>
         <div id="op-details"></div>
       </div>
   </div>
@@ -55,6 +59,7 @@
   <footer>
     <p>Made with <i class="fas fa-heart"></i> by <a href="http://jesusalvarez.me">Jesus Alvarez</a></p>
   </footer>
+  <script src="xml.js"></script>
   <script src="helpers.js"></script>
   <script src="draw.js"></script>
   <script src="index.js"></script>
