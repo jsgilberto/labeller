@@ -121,6 +121,8 @@ button:hover {
 
 .right p {
   width: 100%;
+  text-align: left;
+  padding: 1rem;
   overflow-wrap: break-word;
 }
 

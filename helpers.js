@@ -46,10 +46,10 @@ function showOperations(fileName){
 						width = opInfoText.width;
 						height = opInfoText.height;
 
-						opInfoText = "Coordinate X: " + opInfoText.x.toString() + "<br>" +
-												"Coordinate Y: " + opInfoText.y.toString() + "<br>" +
-												"Width: " + opInfoText.width.toString() + "<br>" +
-												"Height: " + opInfoText.height.toString();
+						opInfoText = "Coordinate X: <strong>" + opInfoText.x.toString() + "</strong><br>" +
+												"Coordinate Y: <strong>" + opInfoText.y.toString() + "</strong><br>" +
+												"Width: <strong>" + opInfoText.width.toString() + "</strong><br>" +
+												"Height: <strong>" + opInfoText.height.toString() + "</strong>";
 						
 						opInfo.innerHTML = opInfoText;
 					}
