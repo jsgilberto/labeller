@@ -10,8 +10,7 @@ var fr = new FileReader();
 var flag = false;
 var btnDownload = document.getElementById('btn-download');
 var ul_files = document.getElementById("file-list");
-var btnView = document.getElementById("btn-view");
-var btnGet = document.getElementById("btn-get");
+
 var opInfo = document.getElementById("op-info");
 var opRemove = document.getElementById("remove");
 
@@ -46,18 +45,6 @@ file.onchange = function(e) {
 
 };
 
-var imgIsSet = false;
-
-btnView.onclick = function(){
-	if (img_target){
-		img.src = img_target;
-	}
-
-	showOperations(trueTextTarget);
-
-	loadImage(ctx, canvas, img_target);
-	drawOpsInCanvas(trueTextTarget);
-};
 
 // download image from canvas
 btnDownload.onclick = function () {
@@ -79,9 +66,7 @@ btnDownload.onclick = function () {
 
 
 
-
-btnGet.onclick = function(){
-	
+var setBox = function(){
 	console.log(pos1, pos2);
 	if (pos1 && pos2){
 		rectObj = {
@@ -98,7 +83,7 @@ btnGet.onclick = function(){
 	else {
 		alert(" Please, Draw a Box on the Image");
 	}
-}
+};
 
 opRemove.onclick = function(){
 	// Remove operations from fileOperations object.
