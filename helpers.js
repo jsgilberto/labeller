@@ -45,6 +45,7 @@ function showOperations(fileName){
 						opName = this.innerHTML;
 						opId = this.value;
 						console.log("opId: ",opId);
+						opInfoText = fileOperations[trueTextTarget][opId][opName].rectObj;
 						x = opInfoText.x;
 						y = opInfoText.y;
 						width = opInfoText.width;
@@ -55,7 +56,7 @@ function showOperations(fileName){
 												"Width: <strong>" + opInfoText.width.toString() + "</strong><br>" +
 												"Height: <strong>" + opInfoText.height.toString() + "</strong>";
 						
-						opInfo.innerHTML = opInfoText;
+						//opInfo.innerHTML = opInfoText;
 					}
 				}
 				trueOpValues = {x, y, width, height};
@@ -71,6 +72,15 @@ function showOperations(fileName){
 				// Select operation globally
 				trueIdOp = opId;
 				trueTextOp = opName;
+
+				// Remove paragraph's (in this case there's going to be only one)
+				var details = document.getElementById("op-details").children;
+				for(var i = details.length - 1; i >= 0; i--){
+					details[i].parentNode.removeChild(details[i]);
+				}
+
+				createElement("op-details", "P", "", opInfoText);
+
 			};
 
 			ops[i].onmouseover = function(){
@@ -97,6 +107,7 @@ function showOperations(fileName){
 				ctx.font = "20px Arial";
 				ctx.fillText(opName, x, y);
 
+				
 
 			}
 
@@ -155,7 +166,7 @@ function showOptions(){
 			console.log(this.parentElement.children);
 			// remove selected style from li elements
 			var opts = this.parentElement.children;
-			opInfo.innerHTML = "";
+			//opInfo.innerHTML = "";
 			
 			for(var j = 0; j < opts.length; j++){
 				opts[j].classList.remove("li-clicked");

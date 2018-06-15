@@ -119,10 +119,17 @@ button:hover {
   margin-bottom: 1rem;
 }
 
+.op-details {
+  width: 10%;
+}
+
 .op-details p {
+  position: fixed;
+  top: 48px;
+  left: 898px;
   width: 100%;
   text-align: left;
-  padding: 1rem;
+  
   overflow-wrap: break-word;
 }
 
