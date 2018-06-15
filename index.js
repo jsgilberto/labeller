@@ -13,9 +13,13 @@ var ul_files = document.getElementById("file-list");
 var btnView = document.getElementById("btn-view");
 var btnGet = document.getElementById("btn-get");
 var opInfo = document.getElementById("op-info");
+var opRemove = document.getElementById("remove");
+
 var img_target;
 var txt_target;
 var trueTextTarget;
+var trueTextOp;
+var trueOpValues;
 var rectObj;
 var fileOperations = {};
 
@@ -143,4 +147,35 @@ btnSet.onclick = function(){
 	btnClose.click();
 }
 
+opRemove.onclick = function(){
+	// Remove operations from fileOperations object.
+	
+	// Find index of Operation
+	// Array of objects. Every element contains a single operation.
+	if(fileOperations[trueTextTarget]){
+		var operations = fileOperations[trueTextTarget];
+		var index = null;
+	}
+	else{
+		return;
+	}
 
+	for(var i = 0; i < operations.length; i++){
+		if(operations[i][trueTextOp]){	
+			var target = operations[i][trueTextOp].rectObj;
+			if(target.x == trueOpValues.x &&
+				target.y == trueOpValues.y &&
+				target.width == trueOpValues.width &&
+				target.height == trueOpValues.height){
+					index = i;
+					console.log(index);
+			}
+		}
+	} 
+
+	/* if (trueTextOp){
+
+
+		fileOperations[trueTextTarget]
+	} */
+}

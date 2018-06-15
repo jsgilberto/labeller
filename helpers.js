@@ -22,25 +22,28 @@ function showOperations(fileName){
 	removeOperations();
 	if(fileOperations[fileName]){
 		var operations = fileOperations[fileName].length;
-
+		id = 0;
 		for (var i = 0; i < operations; i++){
 			var key = Object.keys(fileOperations[fileName][i]);
-			createElement("op-list", "LI", "", key[0]);
+			id++;
+			createElement("op-list", "LI", id.toString(), key[0]);
 		}
 
 		var ops = document.getElementById("op-list").children;
 
 		for(var i = 0; i < operations; i++){
+			// Click event for all operations
 			ops[i].onclick = function(){
-				var opInfoText;
+				var opInfoText, opName, opId;
 				var x, y, width, height;
-				//opInfo.innerHTML = JSON.stringify(fileOperations[trueTextTarget]);
+				
+				// If the operation clicked matches the operation recorded, get the values
 				for(var j = 0; j < fileOperations[trueTextTarget].length; j++){
-					console.log(this.innerHTML);
-					console.log(fileOperations[trueTextTarget][j][this.innerHTML]);
 					if(fileOperations[trueTextTarget][j][this.innerHTML]){
 						opInfoText = fileOperations[trueTextTarget][j][this.innerHTML].rectObj;
-
+						opName = this.innerHTML;
+						opId = this.value;
+						console.log("opId: ",opId);
 						x = opInfoText.x;
 						y = opInfoText.y;
 						width = opInfoText.width;
@@ -54,16 +57,49 @@ function showOperations(fileName){
 						opInfo.innerHTML = opInfoText;
 					}
 				}
-
+				trueOpValues = {x, y, width, height};
+				// Remove the clicked effect on all li's
 				var opts = this.parentElement.children;
 			
 				for(var j = 0; j < opts.length; j++){
 					opts[j].classList.remove("li-clicked");
 				}
 
+				// Set clicked effect on clicked li
 				this.classList.add("li-clicked");
-
+				// Select operation globally
+				trueTextOp = opName;
 			};
+
+			ops[i].onmouseover = function(){
+				for(var j = 0; j < fileOperations[trueTextTarget].length; j++){
+					if(fileOperations[trueTextTarget][j][this.innerHTML]){
+						opInfoText = fileOperations[trueTextTarget][j][this.innerHTML].rectObj;
+						opName = this.innerHTML;
+						x = opInfoText.x;
+						y = opInfoText.y;
+						width = opInfoText.width;
+						height = opInfoText.height;
+					}
+				}
+				// Write name of operation in canvas
+				ctx.canvas.width = ctx.canvas.width;
+				fitImageOn(canvas, img);
+				drawOpsInCanvas(trueTextTarget);
+				ctx.fillStyle = "rgba(255,255,255, 0.5)";
+				ctx.fillRect(x, y, width, height);
+				ctx.fillStyle = "red";
+				ctx.font = "20px Arial";
+				ctx.fillText(opName, x, y);
+
+
+			}
+
+			ops[i].onmouseout = function(){
+				ctx.canvas.width = ctx.canvas.width;
+				fitImageOn(canvas, img);
+				drawOpsInCanvas(trueTextTarget);
+			}
 		}
 	}
 
@@ -124,6 +160,8 @@ function showOptions(){
 			
 			img_target = fileObjects[this.innerHTML];
 			trueTextTarget = this.innerHTML;
+			// Reset Operation selected globally
+			trueTextOp = null;
 			img.src = img_target;
 
 			showOperations(trueTextTarget);
@@ -136,23 +174,6 @@ function showOptions(){
 				console.log("done loading!");
 			};
 
-		}
-
-		options[i].ondblclick = function(){
-			img = new Image();
-			trueTextTarget = this.innerHTML;
-			showOperations(trueTextTarget);
-			
-			//img.src = localStorage.getItem( this.innerHTML );
-			img.src = fileObjects[this.innerHTML];
-
-			img.onload = function() {
-				flag = true;
-				ctx.canvas.width = ctx.canvas.width;
-				fitImageOn(canvas, img);
-				drawOpsInCanvas(trueTextTarget);
-				console.log("done loading");
-			};
 		}
 	}
 }

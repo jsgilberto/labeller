@@ -62,6 +62,8 @@ canvas.onmouseover = function(){
 					ctx.canvas.width = ctx.canvas.width;
 					fitImageOn(canvas, img);
 					drawOpsInCanvas(trueTextTarget);
+					ctx.fillStyle = "rgba(255,255,255, 0.5)";
+					ctx.fillRect(x, y, width, height);
 					ctx.fillStyle = "red";
 					ctx.font = "20px Arial";
 					ctx.fillText(opName, x, y);
@@ -86,10 +88,6 @@ canvas.onmouseover = function(){
 			fitImageOn(canvas, img);
 			ctx.fillStyle = "rgba(255,255,255, 0.3)";
 			ctx.fillRect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
-			
-			//ctx.strokeStyle = "rgba(34,34,34,1)";
-			//ctx.lineWidth = 2;
-			//ctx.stroke();
 		}
 	}
 }
