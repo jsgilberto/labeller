@@ -22,11 +22,12 @@ function showOperations(fileName){
 	removeOperations();
 	if(fileOperations[fileName]){
 		var operations = fileOperations[fileName].length;
-		id = 0;
+		var id = 0;
 		for (var i = 0; i < operations; i++){
 			var key = Object.keys(fileOperations[fileName][i]);
-			id++;
+			
 			createElement("op-list", "LI", id.toString(), key[0]);
+			id++;
 		}
 
 		var ops = document.getElementById("op-list").children;
@@ -68,20 +69,24 @@ function showOperations(fileName){
 				// Set clicked effect on clicked li
 				this.classList.add("li-clicked");
 				// Select operation globally
+				trueIdOp = opId;
 				trueTextOp = opName;
 			};
 
 			ops[i].onmouseover = function(){
 				for(var j = 0; j < fileOperations[trueTextTarget].length; j++){
 					if(fileOperations[trueTextTarget][j][this.innerHTML]){
-						opInfoText = fileOperations[trueTextTarget][j][this.innerHTML].rectObj;
 						opName = this.innerHTML;
+						opId = this.value;
+						opInfoText = fileOperations[trueTextTarget][opId][opName].rectObj;
 						x = opInfoText.x;
 						y = opInfoText.y;
 						width = opInfoText.width;
 						height = opInfoText.height;
+						console.log(opId);
 					}
 				}
+				
 				// Write name of operation in canvas
 				ctx.canvas.width = ctx.canvas.width;
 				fitImageOn(canvas, img);

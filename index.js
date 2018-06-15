@@ -20,6 +20,7 @@ var txt_target;
 var trueTextTarget;
 var trueTextOp;
 var trueOpValues;
+var trueIdOp;
 var rectObj;
 var fileOperations = {};
 
@@ -154,28 +155,16 @@ opRemove.onclick = function(){
 	// Array of objects. Every element contains a single operation.
 	if(fileOperations[trueTextTarget]){
 		var operations = fileOperations[trueTextTarget];
-		var index = null;
+		var index = trueIdOp;
 	}
 	else{
 		return;
 	}
 
-	for(var i = 0; i < operations.length; i++){
-		if(operations[i][trueTextOp]){	
-			var target = operations[i][trueTextOp].rectObj;
-			if(target.x == trueOpValues.x &&
-				target.y == trueOpValues.y &&
-				target.width == trueOpValues.width &&
-				target.height == trueOpValues.height){
-					index = i;
-					console.log(index);
-			}
-		}
-	} 
-
-	/* if (trueTextOp){
-
-
-		fileOperations[trueTextTarget]
-	} */
+	console.log(fileOperations[trueTextTarget][index][trueTextOp]);
+	fileOperations[trueTextTarget].splice(index, 1);
+	showOperations(trueTextTarget);
+	ctx.canvas.width = ctx.canvas.width;
+	fitImageOn(canvas, img);
+	drawOpsInCanvas(trueTextTarget);
 }

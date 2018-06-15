@@ -37,7 +37,7 @@ canvas.onmouseover = function(){
 				var yIn = false;
 
 				var opName = Object.keys(operations[i]);
-				console.log(opName);
+				//console.log(opName);
 				var opValues = operations[i][opName].rectObj;
 				x = opValues.x;
 				y = opValues.y;
