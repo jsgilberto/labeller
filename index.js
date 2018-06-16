@@ -43,7 +43,7 @@ window.onload = function(){
 
 var btnCreateToggle = true;
 var boxCreate = false;
-btnCreate.onclick = function(){
+/* btnCreate.onclick = function(){
 	if (btnCreateToggle){
 		//do something
 		this.classList.add("hover");
@@ -55,7 +55,7 @@ btnCreate.onclick = function(){
 		boxCreate = false;
 		btnCreateToggle = true;
 	}
-}
+} */
 
 btnFile.onclick = function(){
 	file.click();

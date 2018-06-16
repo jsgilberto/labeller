@@ -22,7 +22,7 @@ canvas.onmousedown = function(evt){
 	else if (evt.button == left){
 		boxCreate = true;
 	}
-	if(!boxCreate){
+	if(!boxCreate && trueTextTarget){
 		document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
 		lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
 		lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
@@ -75,7 +75,7 @@ canvas.onmouseover = function(){
 		lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
 		var pos = ctx.transformedPoint(lastX,lastY);
 
-		if(!boxCreate){
+		if(!boxCreate && trueTextTarget){
 			dragged = true;
 			if (dragStart){
 				var pt = ctx.transformedPoint(lastX,lastY);

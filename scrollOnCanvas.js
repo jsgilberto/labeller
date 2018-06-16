@@ -1,5 +1,5 @@
 
-	
+	// Source: http://phrogz.net/tmp/canvas_zoom_to_cursor.html
 	canvas.width = 500; canvas.height = 500;
   
 	window.onload = function(){		
