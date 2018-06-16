@@ -124,7 +124,7 @@ canvas.onmouseover = function(){
 					fitImageOn(canvas, img); */
 					redraw();
 					
-					ctx.fillStyle = "rgba(255,255,255, 0.5)";
+					/* ctx.fillStyle = "rgba(255,255,255, 0.5)";
 					ctx.fillRect(x, y, width, height);
 					
 					ctx.font = "14px Arial";
@@ -133,14 +133,14 @@ canvas.onmouseover = function(){
 					while(ctx.measureText(txt).width > width){
 						ctx.font = fontSize.toString() + "px Arial";
 						fontSize--;
-						console.log(fontSize);
+						//console.log(fontSize);
 					}
 
 					ctx.fillStyle = "rgba(255,255,255,1)";
 					ctx.fillRect(x, y, width, fontSize + 6);
 					ctx.fillStyle = "#222";
-					ctx.fillText(opName, x, y + fontSize);
-					
+					ctx.fillText(opName, x, y + fontSize); */
+					highlight(opName, x, y, width, height);
 					return;
 				}
 				else{
@@ -166,3 +166,21 @@ canvas.onmouseover = function(){
 	}, false );//
 }
 
+var highlight = function(opName, x, y, width, height){
+	ctx.fillStyle = "rgba(255,255,255, 0.5)";
+	ctx.fillRect(x, y, width, height);
+	
+	ctx.font = "14px Arial";
+	var txt = opName;
+	var fontSize = 14;
+	while(ctx.measureText(txt).width > width){
+		ctx.font = fontSize.toString() + "px Arial";
+		fontSize--;
+		//console.log(fontSize);
+	}
+
+	ctx.fillStyle = "rgba(255,255,255,1)";
+	ctx.fillRect(x, y, width, fontSize + 6);
+	ctx.fillStyle = "#222";
+	ctx.fillText(opName, x, y + fontSize);
+}

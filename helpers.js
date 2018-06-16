@@ -126,12 +126,12 @@ function showOperations(fileName){
 				fitImageOn(canvas, img); */
 				redraw();
 				drawOpsInCanvas(trueTextTarget);
-				ctx.fillStyle = "rgba(255,255,255, 0.5)";
+				/* ctx.fillStyle = "rgba(255,255,255, 0.5)";
 				ctx.fillRect(x, y, width, height);
 				ctx.fillStyle = "red";
 				ctx.font = "20px Arial";
-				ctx.fillText(opName, x, y);
-
+				ctx.fillText(opName, x, y); */
+				highlight(opName, x, y, width, height);
 				
 
 			}
