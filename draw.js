@@ -8,9 +8,20 @@ var draw = false;
 var pos1, pos2;
 
 
-
+canvas.oncontextmenu = function(evt){
+	evt.preventDefault();
+}
 
 canvas.onmousedown = function(evt){
+	console.log("BUTTON PRESSED:",evt.button);
+	var right = 2;
+	var left = 0;
+	if (evt.button == right){
+		boxCreate = false;
+	}
+	else if (evt.button == left){
+		boxCreate = true;
+	}
 	if(!boxCreate){
 		document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
 		lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
