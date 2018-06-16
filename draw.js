@@ -70,10 +70,11 @@ canvas.onmouseover = function(){
 	
 	canvas.addEventListener("mousemove", function(evt){
 		/////////////////////////
-		lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
-		lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
-		var pos = ctx.transformedPoint(lastX,lastY);
-
+		if(trueTextTarget){
+			lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
+			lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+			var pos = ctx.transformedPoint(lastX,lastY);	
+		}
 		if(!boxCreate && trueTextTarget){
 			dragged = true;
 			if (dragStart){
@@ -120,50 +121,24 @@ canvas.onmouseover = function(){
 	
 				if (xIn && yIn){
 					console.log("inside op: " + opName);
-					/* ctx.canvas.width = ctx.canvas.width;
-					fitImageOn(canvas, img); */
 					redraw();
-					
-					/* ctx.fillStyle = "rgba(255,255,255, 0.5)";
-					ctx.fillRect(x, y, width, height);
-					
-					ctx.font = "14px Arial";
-					var txt = opName;
-					var fontSize = 14;
-					while(ctx.measureText(txt).width > width){
-						ctx.font = fontSize.toString() + "px Arial";
-						fontSize--;
-						//console.log(fontSize);
-					}
-
-					ctx.fillStyle = "rgba(255,255,255,1)";
-					ctx.fillRect(x, y, width, fontSize + 6);
-					ctx.fillStyle = "#222";
-					ctx.fillText(opName, x, y + fontSize); */
 					highlight(opName, x, y, width, height);
 					return;
 				}
 				else{
-					/* ctx.canvas.width = ctx.canvas.width;
-					fitImageOn(canvas, img);
-					drawOpsInCanvas(trueTextTarget); */
 					redraw();
-					
 				}
 			}			
 		}
 		
 		if (draw){
-			//ctx.canvas.width = ctx.canvas.width;
-			//pos2 = getMousePos(canvas, evt);
 			pos2 = ctx.transformedPoint(lastX,lastY);
-			/* fitImageOn(canvas, img); */
 			redraw();
 			
 			ctx.fillStyle = "rgba(255,255,255, 0.3)";
 			ctx.fillRect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
 		}
-	}, false );//
+	}, false );
 }
 
 var highlight = function(opName, x, y, width, height){
@@ -176,7 +151,6 @@ var highlight = function(opName, x, y, width, height){
 	while(ctx.measureText(txt).width > width){
 		ctx.font = fontSize.toString() + "px Arial";
 		fontSize--;
-		//console.log(fontSize);
 	}
 
 	ctx.fillStyle = "rgba(255,255,255,1)";
