@@ -11,6 +11,16 @@ var pos1, pos2;
 
 
 canvas.onmousedown = function(evt){
+	if(!boxCreate){
+		document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
+		lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
+		lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+		console.log("raw:",lastX, lastY);
+		dragStart = ctx.transformedPoint(lastX,lastY);
+		console.log(dragStart);
+		dragged = false;
+		return;
+	}
 
 	if (trueTextTarget && boxCreate){
 		draw = true;
@@ -21,6 +31,12 @@ canvas.onmousedown = function(evt){
 };
 
 canvas.onmouseup = function(evt){
+
+	if(!boxCreate){
+		dragStart = null;
+		if (!dragged) zoom(evt.shiftKey ? -1 : 1 );
+		return;
+	}
 
 	if (draw){
 		//pos2 = getMousePos(canvas, evt);
@@ -47,6 +63,18 @@ canvas.onmouseover = function(){
 		lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
 		lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
 		var pos = ctx.transformedPoint(lastX,lastY);
+
+		if(!boxCreate){
+			dragged = true;
+			if (dragStart){
+				var pt = ctx.transformedPoint(lastX,lastY);
+				console.log(dragStart);
+				ctx.translate(pt.x-dragStart.x,pt.y-dragStart.y);
+				redraw();
+				drawOpsInCanvas();
+			}
+			//return;
+		}
 			//console.log("trnsformed:", pos.x, pos.y);
 		//console.log("raw:", lastX, lastY);
 		/////////////////////////
