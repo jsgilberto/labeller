@@ -13,7 +13,6 @@ canvas.oncontextmenu = function(evt){
 }
 
 canvas.onmousedown = function(evt){
-	console.log("BUTTON PRESSED:",evt.button);
 	var right = 2;
 	var left = 0;
 	if (evt.button == right){
@@ -26,9 +25,9 @@ canvas.onmousedown = function(evt){
 		document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
 		lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
 		lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
-		console.log("raw:",lastX, lastY);
+		
 		dragStart = ctx.transformedPoint(lastX,lastY);
-		console.log(dragStart);
+		
 		dragged = false;
 		return;
 	}
@@ -82,7 +81,6 @@ canvas.onmouseover = function(){
 				console.log(dragStart);
 				ctx.translate(pt.x-dragStart.x,pt.y-dragStart.y);
 				redraw();
-				drawOpsInCanvas();
 			}
 			//return;
 		}
@@ -125,12 +123,24 @@ canvas.onmouseover = function(){
 					/* ctx.canvas.width = ctx.canvas.width;
 					fitImageOn(canvas, img); */
 					redraw();
-					drawOpsInCanvas(trueTextTarget);
+					
 					ctx.fillStyle = "rgba(255,255,255, 0.5)";
 					ctx.fillRect(x, y, width, height);
-					ctx.fillStyle = "red";
-					ctx.font = "20px Arial";
-					ctx.fillText(opName, x, y);
+					
+					ctx.font = "14px Arial";
+					var txt = opName;
+					var fontSize = 14;
+					while(ctx.measureText(txt).width > width){
+						ctx.font = fontSize.toString() + "px Arial";
+						fontSize--;
+						console.log(fontSize);
+					}
+
+					ctx.fillStyle = "rgba(255,255,255,1)";
+					ctx.fillRect(x, y, width, fontSize + 6);
+					ctx.fillStyle = "#222";
+					ctx.fillText(opName, x, y + fontSize);
+					
 					return;
 				}
 				else{
@@ -138,7 +148,7 @@ canvas.onmouseover = function(){
 					fitImageOn(canvas, img);
 					drawOpsInCanvas(trueTextTarget); */
 					redraw();
-					drawOpsInCanvas(trueTextTarget);
+					
 				}
 			}			
 		}
@@ -149,7 +159,7 @@ canvas.onmouseover = function(){
 			pos2 = ctx.transformedPoint(lastX,lastY);
 			/* fitImageOn(canvas, img); */
 			redraw();
-			drawOpsInCanvas();
+			
 			ctx.fillStyle = "rgba(255,255,255, 0.3)";
 			ctx.fillRect(pos1.x, pos1.y, pos2.x - pos1.x, pos2.y - pos1.y);
 		}

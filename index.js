@@ -216,7 +216,7 @@ var ctx = canvas.getContext('2d');
 		// ctx.restore();
 		//ctx.canvas.width = ctx.canvas.width;
 		fitImageOn(canvas, img);
-		drawOpsInCanvas();
+		drawOpsInCanvas(trueTextTarget);
 
 	}
 	redraw();
